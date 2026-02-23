@@ -7,6 +7,7 @@ const UserDashboard = () => {
     const [area, setArea] = useState('');
     const [category, setCategory] = useState('');
     const [bookings, setBookings] = useState([]);
+    const [showHistory, setShowHistory] = useState(false);
 
     const categories = [
         'Electrician', 'Plumber', 'Carpenter', 'Cleaning',
@@ -195,54 +196,65 @@ const UserDashboard = () => {
             </section>
 
             <section>
-                <h3 className="mb-2">Recent Booking History</h3>
-                <div style={{ display: 'grid', gap: '1rem' }}>
-                    {bookings.map(b => (
-                        <div key={b._id} className="glass-card" style={{ padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'transform 0.2s' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                                <div style={{
-                                    backgroundColor: 'var(--bg-light)',
-                                    padding: '1rem',
-                                    borderRadius: '12px',
-                                    textAlign: 'center',
-                                    minWidth: '85px',
-                                    boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.02)'
-                                }}>
-                                    <div style={{ fontWeight: 'bold', fontSize: '1.4rem', color: 'var(--primary)' }}>
-                                        {new Date(b.bookingDate).getDate()}
-                                    </div>
-                                    <div style={{ fontSize: '0.8rem', color: 'var(--text-light)', textTransform: 'uppercase', fontWeight: 600 }}>
-                                        {new Date(b.bookingDate).toLocaleString('default', { month: 'short' })}
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 style={{ margin: 0, marginBottom: '0.4rem', fontSize: '1.1rem' }}>{b.serviceType}</h4>
-                                    <div className="text-sm text-light" style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                                        Provider: <span style={{ fontWeight: 600, color: 'var(--text-dark)' }}>{b.providerId?.name || 'Unknown Provider'}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style={{ textAlign: 'right' }}>
-                                <div style={{ fontWeight: 'bold', marginBottom: '0.6rem', fontSize: '1.2rem', color: 'var(--text-dark)' }}>${b.price}</div>
-                                <span style={{
-                                    padding: '0.3rem 0.8rem',
-                                    borderRadius: '20px',
-                                    fontSize: '0.75rem',
-                                    fontWeight: 'bold',
-                                    backgroundColor: b.status === 'pending' ? '#FEF3C7' : b.status === 'accepted' ? '#D1FAE5' : b.status === 'completed' ? '#DBEAFE' : '#F1F5F9',
-                                    color: b.status === 'pending' ? '#D97706' : b.status === 'accepted' ? '#059669' : b.status === 'completed' ? '#1D4ED8' : '#64748B'
-                                }}>
-                                    {b.status.toUpperCase()}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                    {bookings.length === 0 && (
-                        <div className="glass" style={{ padding: '3rem', textAlign: 'center', borderRadius: '12px', color: 'var(--text-light)' }}>
-                            You have no active bookings right now. Find a provider to get started!
-                        </div>
-                    )}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                    <h3 style={{ margin: 0 }}>Recent Booking History</h3>
+                    <button
+                        className="btn btn-outline"
+                        onClick={() => setShowHistory(!showHistory)}
+                        style={{ borderRadius: '20px', padding: '0.4rem 1.2rem' }}
+                    >
+                        {showHistory ? 'Hide History' : 'Show History'}
+                    </button>
                 </div>
+                {showHistory && (
+                    <div style={{ display: 'grid', gap: '1rem' }}>
+                        {bookings.map(b => (
+                            <div key={b._id} className="glass-card" style={{ padding: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'transform 0.2s' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                                    <div style={{
+                                        backgroundColor: 'var(--bg-light)',
+                                        padding: '1rem',
+                                        borderRadius: '12px',
+                                        textAlign: 'center',
+                                        minWidth: '85px',
+                                        boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.02)'
+                                    }}>
+                                        <div style={{ fontWeight: 'bold', fontSize: '1.4rem', color: 'var(--primary)' }}>
+                                            {new Date(b.bookingDate).getDate()}
+                                        </div>
+                                        <div style={{ fontSize: '0.8rem', color: 'var(--text-light)', textTransform: 'uppercase', fontWeight: 600 }}>
+                                            {new Date(b.bookingDate).toLocaleString('default', { month: 'short' })}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 style={{ margin: 0, marginBottom: '0.4rem', fontSize: '1.1rem' }}>{b.serviceType}</h4>
+                                        <div className="text-sm text-light" style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                                            Provider: <span style={{ fontWeight: 600, color: 'var(--text-dark)' }}>{b.providerId?.name || 'Unknown Provider'}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style={{ textAlign: 'right' }}>
+                                    <div style={{ fontWeight: 'bold', marginBottom: '0.6rem', fontSize: '1.2rem', color: 'var(--text-dark)' }}>${b.price}</div>
+                                    <span style={{
+                                        padding: '0.3rem 0.8rem',
+                                        borderRadius: '20px',
+                                        fontSize: '0.75rem',
+                                        fontWeight: 'bold',
+                                        backgroundColor: b.status === 'pending' ? '#FEF3C7' : b.status === 'accepted' ? '#D1FAE5' : b.status === 'completed' ? '#DBEAFE' : '#F1F5F9',
+                                        color: b.status === 'pending' ? '#D97706' : b.status === 'accepted' ? '#059669' : b.status === 'completed' ? '#1D4ED8' : '#64748B'
+                                    }}>
+                                        {b.status.toUpperCase()}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                        {bookings.length === 0 && (
+                            <div className="glass" style={{ padding: '3rem', textAlign: 'center', borderRadius: '12px', color: 'var(--text-light)' }}>
+                                You have no active bookings right now. Find a provider to get started!
+                            </div>
+                        )}
+                    </div>
+                )}
             </section>
         </div>
     );
