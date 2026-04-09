@@ -1,5 +1,7 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import ServicesSection from './components/ServicesSection';
+import ProcessSection from './components/ProcessSection';
 
 export default function App() {
   return (
@@ -7,6 +9,8 @@ export default function App() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <ServicesSection />
+        <ProcessSection />
       </main>
     </div>
   );
