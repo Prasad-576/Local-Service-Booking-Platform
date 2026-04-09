@@ -25,7 +25,7 @@ export default function Navbar() {
           </button>
 
           <a href="#" className="hidden sm:block text-2xl font-bold tracking-wider text-white">
-            Precision<span className="font-light text-blue-200">Service</span>
+            Local<span className="font-light text-blue-200">Serve</span>
           </a>
           {/* Mobile Logo */}
           <a href="#" className="sm:hidden text-lg font-bold tracking-wider text-white">

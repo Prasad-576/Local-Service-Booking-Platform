@@ -26,14 +26,14 @@ export default function Hero() {
       
       {/* Background Image */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat -z-20"
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
         style={{ backgroundImage: `url(${heroImg})` }}
       ></div>
 
       {/* Modern Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/90 via-[#1e3a8a]/70 to-[#2563eb]/20 sm:to-transparent -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/80 via-[#1e3a8a]/70 to-transparent z-10"></div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 pt-12 pb-20 lg:py-0">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-20 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 pt-12 pb-20 lg:py-0">
         
         {/* Left Content Area */}
         <motion.div 
