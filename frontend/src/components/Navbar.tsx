@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, Bell, User, LayoutDashboard, Settings, LogOut } from "lucide-react";
+import { motion } from "framer-motion";
+import { Menu, Bell } from "lucide-react";
 import { cn } from "../utils/cn";
+import ProfileDropdown from "./ProfileDropdown";
 
 export default function Navbar() {
-  const [profileOpen, setProfileOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("Home");
+  const [isLoggedIn] = useState(false); // Logged out state
+  const user = {
+    name: "John Doe",
+    email: "john@gmail.com",
+  };
 
   const menuItems = ["Home", "Services", "Pricing", "Contact"];
 
@@ -61,49 +66,7 @@ export default function Navbar() {
             <span className="absolute top-2 right-2 w-2 h-2 bg-red-400 rounded-full border border-[#1e3a8a] shadow-[0_0_8px_rgba(248,113,113,0.8)]"></span>
           </button>
 
-          <div className="relative">
-            <button 
-              onClick={() => setProfileOpen(!profileOpen)}
-              className="w-9 h-9 rounded-full border border-blue-300/50 shadow-sm overflow-hidden hover:border-blue-200 hover:scale-105 transition-all duration-300 focus:outline-none"
-            >
-              <div className="w-full h-full bg-blue-800/50 flex items-center justify-center text-blue-100">
-                <User className="w-5 h-5" />
-              </div>
-            </button>
-
-            {/* Profile Dropdown */}
-            <AnimatePresence>
-              {profileOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 15, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="absolute right-0 mt-3 w-56 rounded-xl bg-white backdrop-blur-xl shadow-2xl border border-gray-100 py-2 overflow-hidden z-50 origin-top-right"
-                >
-                  <div className="px-4 py-3 border-b border-gray-50 mb-1 bg-gray-50/50">
-                    <p className="text-sm font-bold text-gray-900 leading-tight">Marcus Chen</p>
-                    <p className="text-xs text-gray-500 mt-0.5">marcus@example.com</p>
-                  </div>
-                  
-                  <div className="py-1">
-                    <a href="#" className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[#2563eb] transition-colors duration-200">
-                      <LayoutDashboard className="w-4 h-4 text-gray-400" /> Dashboard
-                    </a>
-                    <a href="#" className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-[#2563eb] transition-colors duration-200">
-                      <Settings className="w-4 h-4 text-gray-400" /> Settings
-                    </a>
-                  </div>
-                  <div className="border-t border-gray-100 my-1"></div>
-                  <div className="py-1">
-                    <a href="#" className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors duration-200">
-                      <LogOut className="w-4 h-4 text-red-400" /> Sign out
-                    </a>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          <ProfileDropdown isLoggedIn={isLoggedIn} user={user} />
         </div>
       </div>
     </motion.header>

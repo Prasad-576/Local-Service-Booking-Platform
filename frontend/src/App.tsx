@@ -1,19 +1,14 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import ServicesSection from './components/ServicesSection';
-import ProcessSection from './components/ProcessSection';
-import WhyChooseUs from './components/WhyChooseUs';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
 
 export default function App() {
   return (
-    <div className="antialiased text-gray-900 min-h-screen bg-gray-50 flex flex-col selection:bg-blue-500 selection:text-white overflow-x-hidden">
-      <Navbar />
-      <main className="flex-1">
-        <Hero />
-        <ServicesSection />
-        <ProcessSection />
-        <WhyChooseUs />
-      </main>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
