@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { Star, CheckCircle, ArrowRight, Zap } from "lucide-react";
+import { CheckCircle, ArrowRight, Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImg from "../assets/images/Hero1.png";
 
 export default function Hero() {
+  const navigate = useNavigate();
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -71,33 +74,28 @@ export default function Hero() {
             Professional electricians, plumbers, and more — verified, reliable, and just a click away for your ultimate peace of mind.
           </motion.p>
 
-          {/* Actions & Stats Container */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+          {/* Actions Container */}
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mt-2">
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] rounded-xl font-bold text-white text-lg shadow-[0_8px_20px_rgba(37,99,235,0.4)] transition-all duration-300 overflow-hidden"
+              className="group relative flex justify-center items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] rounded-xl font-bold text-white text-lg shadow-[0_8px_20px_rgba(37,99,235,0.4)] transition-all duration-300 overflow-hidden"
             >
               Book Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              {/* Button shine effect */}
               <span className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-[150%] group-hover:animate-[shine_1s_ease-in-out]"></span>
             </motion.button>
 
-            <div className="flex items-center gap-4 bg-[#0f172a]/40 backdrop-blur-sm border border-white/10 px-5 py-3 rounded-xl shadow-inner">
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1 text-yellow-500 mb-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
-                  ))}
-                  <span className="text-white font-bold ml-1 text-sm tracking-wide">4.8</span>
-                </div>
-                <div className="text-xs font-semibold tracking-wide text-gray-300 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                  10,000+ Services Delivered
-                </div>
-              </div>
-            </div>
+            <motion.button 
+              onClick={() => navigate('/provider-dashboard')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative flex justify-center items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] rounded-xl font-bold text-white text-lg shadow-[0_8px_20px_rgba(37,99,235,0.4)] transition-all duration-300 overflow-hidden"
+            >
+              Be a Provider Now
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <span className="absolute inset-0 w-1/4 h-full bg-white/20 skew-x-[-20deg] -translate-x-[150%] group-hover:animate-[shine_1s_ease-in-out]"></span>
+            </motion.button>
           </motion.div>
         </motion.div>
 
