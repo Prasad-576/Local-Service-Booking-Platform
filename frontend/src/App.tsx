@@ -2,6 +2,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ServicesSection from './components/ServicesSection';
 import ProcessSection from './components/ProcessSection';
+import WhyChooseUs from './components/WhyChooseUs';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Hero />
         <ServicesSection />
         <ProcessSection />
+        <WhyChooseUs />
       </main>
     </div>
   );
