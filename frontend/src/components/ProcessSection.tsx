@@ -85,10 +85,10 @@ export default function ProcessSection() {
   };
 
   return (
-    <section className="py-20 lg:py-24 bg-white relative overflow-hidden">
+    <section className="py-20 lg:py-24 bg-[#091321] relative overflow-hidden">
       {/* Subtle Background Pattern / Blur */}
-      <div className="absolute top-40 -left-64 w-96 h-96 bg-blue-300 rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
-      <div className="absolute bottom-40 -right-64 w-96 h-96 bg-indigo-300 rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
+      <div className="absolute top-40 -left-64 w-96 h-96 bg-sky-500 rounded-full blur-[150px] opacity-10 pointer-events-none"></div>
+      <div className="absolute bottom-40 -right-64 w-96 h-96 bg-slate-700 rounded-full blur-[150px] opacity-20 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
@@ -99,7 +99,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-blue-500 mb-6 inline-block pb-1"
+            className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-sky-300 mb-6 inline-block pb-1"
           >
             How It Works
           </motion.h2>
@@ -108,7 +108,7 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-gray-500 max-w-2xl mx-auto text-base md:text-lg leading-relaxed"
+            className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed"
           >
             A seamless and efficient process designed for both customers and service providers to ensure smooth and reliable service delivery.
           </motion.p>
@@ -126,12 +126,12 @@ export default function ProcessSection() {
             className="relative"
           >
             <div className="mb-10 lg:mb-12">
-              <h3 className="text-2xl font-bold text-gray-900 border-l-4 border-[#2563eb] pl-4">
+              <h3 className="text-2xl font-bold text-slate-100 border-l-4 border-sky-400 pl-4">
                 For Customers
               </h3>
             </div>
 
-            <div className="relative border-l-2 border-blue-100 pl-8 ml-4 space-y-10">
+            <div className="relative border-l-2 border-white/10 pl-8 ml-4 space-y-10">
               {customerSteps.map((step, index) => {
                 const Icon = step.icon;
                 return (
@@ -139,25 +139,25 @@ export default function ProcessSection() {
                     key={index}
                     variants={leftItemVariants}
                     whileHover={{ scale: 1.05 }}
-                    className="relative bg-blue-50 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer border border-transparent hover:border-blue-200"
+                    className="relative bg-[#101b2c] rounded-2xl p-6 shadow-[0_12px_30px_rgba(2,6,23,0.25)] hover:shadow-[0_20px_40px_rgba(2,6,23,0.35)] transition-all duration-300 group cursor-pointer border border-white/8 hover:border-sky-400/25"
                   >
                     {/* Focus Glow */}
-                    <div className="absolute inset-0 bg-[#2563eb]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-sky-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 
                     {/* Step Timeline Indicator */}
-                    <div className="absolute -left-[51px] top-6 w-10 h-10 bg-white rounded-full border-4 border-blue-100 flex items-center justify-center shadow-sm group-hover:border-[#2563eb] transition-colors duration-300 z-10">
-                      <span className="text-[#2563eb] font-bold text-sm tracking-tighter">0{index + 1}</span>
+                    <div className="absolute -left-[51px] top-6 w-10 h-10 bg-[#091321] rounded-full border-4 border-white/10 flex items-center justify-center shadow-sm group-hover:border-sky-400 transition-colors duration-300 z-10">
+                      <span className="text-sky-300 font-bold text-sm tracking-tighter">0{index + 1}</span>
                     </div>
 
                     <div className="flex flex-col sm:flex-row items-start gap-4 relative z-10">
-                      <div className="shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:bg-[#2563eb] group-hover:text-white transition-colors duration-300 text-[#2563eb]">
+                      <div className="shrink-0 w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center shadow-sm group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300 text-sky-300 border border-white/10">
                         <Icon className="w-6 h-6 transition-colors duration-300" />
                       </div>
                       <div>
-                        <h4 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-[#2563eb] transition-colors duration-300">
+                        <h4 className="text-xl font-semibold text-slate-100 mb-2 group-hover:text-sky-300 transition-colors duration-300">
                           {step.title}
                         </h4>
-                        <p className="text-sm text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                        <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors duration-300">
                           {step.description}
                         </p>
                       </div>
@@ -177,12 +177,12 @@ export default function ProcessSection() {
             className="relative mt-8 lg:mt-0"
           >
             <div className="mb-10 lg:mb-12">
-              <h3 className="text-2xl font-bold text-gray-900 border-l-4 border-[#1e40af] pl-4">
+              <h3 className="text-2xl font-bold text-slate-100 border-l-4 border-sky-500 pl-4">
                 For Service Providers
               </h3>
             </div>
 
-            <div className="relative border-l-2 border-indigo-100 pl-8 ml-4 space-y-10">
+            <div className="relative border-l-2 border-white/10 pl-8 ml-4 space-y-10">
               {providerSteps.map((step, index) => {
                 const Icon = step.icon;
                 return (
@@ -190,25 +190,25 @@ export default function ProcessSection() {
                     key={index}
                     variants={rightItemVariants}
                     whileHover={{ scale: 1.05 }}
-                    className="relative bg-gradient-to-br from-blue-100/60 to-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group cursor-pointer border border-transparent hover:border-indigo-200"
+                    className="relative bg-gradient-to-br from-[#111b2c] to-[#0a1320] rounded-2xl p-6 shadow-[0_12px_30px_rgba(2,6,23,0.25)] hover:shadow-[0_20px_40px_rgba(2,6,23,0.35)] transition-all duration-300 group cursor-pointer border border-white/8 hover:border-sky-500/25"
                   >
                     {/* Focus Glow */}
-                    <div className="absolute inset-0 bg-[#1e40af]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-sky-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 
                     {/* Step Timeline Indicator */}
-                    <div className="absolute -left-[51px] top-6 w-10 h-10 bg-white rounded-full border-4 border-indigo-100 flex items-center justify-center shadow-sm group-hover:border-[#1e40af] transition-colors duration-300 z-10">
-                      <span className="text-[#1e40af] font-bold text-sm tracking-tighter">0{index + 1}</span>
+                    <div className="absolute -left-[51px] top-6 w-10 h-10 bg-[#091321] rounded-full border-4 border-white/10 flex items-center justify-center shadow-sm group-hover:border-sky-500 transition-colors duration-300 z-10">
+                      <span className="text-sky-300 font-bold text-sm tracking-tighter">0{index + 1}</span>
                     </div>
 
                     <div className="flex flex-col sm:flex-row items-start gap-4 relative z-10">
-                      <div className="shrink-0 w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:bg-[#1e40af] group-hover:text-white transition-colors duration-300 text-[#1e40af]">
+                      <div className="shrink-0 w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center shadow-sm group-hover:bg-sky-500 group-hover:text-white transition-colors duration-300 text-sky-300 border border-white/10">
                         <Icon className="w-6 h-6 transition-colors duration-300" />
                       </div>
                       <div>
-                        <h4 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-[#1e40af] transition-colors duration-300">
+                        <h4 className="text-xl font-semibold text-slate-100 mb-2 group-hover:text-sky-300 transition-colors duration-300">
                           {step.title}
                         </h4>
-                        <p className="text-sm text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                        <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors duration-300">
                           {step.description}
                         </p>
                       </div>

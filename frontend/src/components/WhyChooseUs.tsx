@@ -52,7 +52,7 @@ const itemVariants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-[#07111f]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -63,10 +63,10 @@ export default function WhyChooseUs() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent inline-block pb-1">
+          <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-white to-sky-300 bg-clip-text text-transparent inline-block pb-1">
             Why Choose LocalServe
           </h2>
-          <p className="mt-4 text-gray-500 max-w-2xl mx-auto">
+          <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
             We are committed to delivering reliable, high-quality home services with a seamless experience for both customers and service providers.
           </p>
         </motion.div>
@@ -85,13 +85,13 @@ export default function WhyChooseUs() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-white border border-gray-100 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 hover:border-blue-300/50 group"
+                className="bg-gradient-to-b from-[#101b2c] to-[#0b1422] border border-white/8 rounded-2xl p-6 shadow-[0_12px_30px_rgba(2,6,23,0.28)] hover:shadow-[0_20px_40px_rgba(2,6,23,0.38)] transition-all duration-300 hover:scale-105 hover:border-sky-400/25 group"
               >
-                <div className="bg-blue-100 text-blue-600 rounded-xl p-3 inline-flex mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="bg-slate-900 text-sky-300 rounded-xl p-3 inline-flex mb-4 group-hover:scale-110 transition-transform duration-300 border border-white/10">
                   <Icon size={24} />
                 </div>
-                <h3 className="font-semibold text-lg text-gray-900">{feature.title}</h3>
-                <p className="text-sm text-gray-500 mt-2">{feature.description}</p>
+                <h3 className="font-semibold text-lg text-slate-100">{feature.title}</h3>
+                <p className="text-sm text-slate-400 mt-2">{feature.description}</p>
               </motion.div>
             );
           })}
@@ -103,17 +103,17 @@ export default function WhyChooseUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-[2rem] p-8 md:p-12 text-center shadow-xl hover:shadow-blue-500/20 transition-shadow duration-300 relative overflow-hidden"
+          className="bg-gradient-to-r from-[#0f1b2d] via-[#122239] to-[#17314c] rounded-[2rem] p-8 md:p-12 text-center shadow-xl hover:shadow-sky-500/10 transition-shadow duration-300 relative overflow-hidden border border-white/10"
         >
           {/* Decorative background shapes */}
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-64 h-64 bg-blue-400 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-sky-500 rounded-full blur-3xl opacity-15 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-64 h-64 bg-slate-500 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
 
           <div className="relative z-10">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-8">
               Experience hassle-free home services with LocalServe today.
             </h3>
-            <button className="bg-white text-blue-600 font-semibold py-3 px-8 rounded-xl shadow-md hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-1 active:translate-y-0">
+            <button className="bg-sky-400 text-slate-950 font-semibold py-3 px-8 rounded-xl shadow-md hover:bg-sky-300 hover:shadow-[0_0_20px_rgba(56,189,248,0.25)] transition-all duration-300 hover:-translate-y-1 active:translate-y-0">
               Get Started
             </button>
           </div>

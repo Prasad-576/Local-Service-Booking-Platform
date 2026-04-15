@@ -34,7 +34,8 @@ export default function Hero() {
       ></div>
 
       {/* Modern Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/80 via-[#1e3a8a]/70 to-transparent z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#030712]/92 via-[#081120]/84 to-[#0f172a]/35 z-10"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.8),transparent_38%)] z-10"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-20 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 pt-12 pb-20 lg:py-0">
         
@@ -46,9 +47,9 @@ export default function Hero() {
           className="w-full lg:w-3/5 text-left"
         >
           {/* Subtle badge */}
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-blue-400/30 bg-blue-900/40 backdrop-blur-md shadow-sm">
-            <Zap className="w-4 h-4 text-blue-400" />
-            <span className="text-sm font-semibold tracking-wide text-blue-100">
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-sky-400/20 bg-slate-900/45 backdrop-blur-md shadow-sm">
+            <Zap className="w-4 h-4 text-sky-300" />
+            <span className="text-sm font-semibold tracking-wide text-slate-100">
               Rated #1 Home Service Platform
             </span>
           </motion.div>
@@ -59,7 +60,7 @@ export default function Hero() {
             className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight text-white"
           >
             Book Trusted <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-200 via-slate-100 to-white">
               Home Services
             </span>
             <br />
@@ -69,7 +70,7 @@ export default function Hero() {
           {/* Subheading */}
           <motion.p 
             variants={itemVariants}
-            className="text-lg sm:text-xl mb-10 max-w-xl text-[#e5e7eb] leading-relaxed font-medium"
+            className="text-lg sm:text-xl mb-10 max-w-xl text-slate-300 leading-relaxed font-medium"
           >
             Professional electricians, plumbers, and more — verified, reliable, and just a click away for your ultimate peace of mind.
           </motion.p>
@@ -80,7 +81,7 @@ export default function Hero() {
               onClick={() => navigate('/dashboard')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative flex justify-center items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] rounded-xl font-bold text-white text-lg shadow-[0_8px_20px_rgba(37,99,235,0.4)] transition-all duration-300 overflow-hidden"
+              className="group relative flex justify-center items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#0f2744] to-[#1b4d70] hover:from-[#123252] hover:to-[#22648f] rounded-xl font-bold text-white text-lg shadow-[0_12px_30px_rgba(8,17,32,0.45)] transition-all duration-300 overflow-hidden border border-sky-400/15"
             >
               Book Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -91,7 +92,7 @@ export default function Hero() {
               onClick={() => navigate('/provider-dashboard')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative flex justify-center items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] rounded-xl font-bold text-white text-lg shadow-[0_8px_20px_rgba(37,99,235,0.4)] transition-all duration-300 overflow-hidden"
+              className="group relative flex justify-center items-center gap-3 px-8 py-4 bg-slate-900/70 hover:bg-slate-800/80 rounded-xl font-bold text-slate-100 text-lg shadow-[0_12px_30px_rgba(8,17,32,0.45)] transition-all duration-300 overflow-hidden border border-white/10"
             >
               Be a Provider Now
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -116,29 +117,29 @@ export default function Hero() {
                 ease: "easeInOut"
               }
             }}
-            className="w-full sm:max-w-sm rounded-xl backdrop-blur-lg bg-white/10 border border-white/20 p-5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] lg:ml-auto relative z-20"
+            className="w-full sm:max-w-sm rounded-xl backdrop-blur-lg bg-slate-950/35 border border-white/15 p-5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)] lg:ml-auto relative z-20"
           >
             {/* Minimal decorative blur */}
-            <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-500 rounded-full blur-[60px] opacity-20 -z-10"></div>
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-sky-500 rounded-full blur-[60px] opacity-15 -z-10"></div>
             
             <div className="flex items-start gap-4">
               <div className="relative shrink-0">
                 <img 
                   src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?fit=crop&w=150&h=150" 
                   alt="Marcus Chen" 
-                  className="w-12 h-12 rounded-full object-cover shadow-md border border-white/30"
+                  className="w-12 h-12 rounded-full object-cover shadow-md border border-white/20"
                 />
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-[#1e3a8a]"></div>
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-400 rounded-full border-2 border-[#081120]"></div>
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-0.5">
                   <h4 className="text-white font-bold text-sm tracking-wide">Marcus Chen</h4>
-                  <CheckCircle className="w-3.5 h-3.5 text-blue-300" />
+                  <CheckCircle className="w-3.5 h-3.5 text-sky-300" />
                 </div>
-                <p className="text-xs text-blue-200 font-medium mb-2">Smart Home Specialist</p>
+                <p className="text-xs text-slate-300 font-medium mb-2">Smart Home Specialist</p>
                 
-                <div className="bg-[#0f172a]/60 rounded-lg p-3 border border-white/5 shadow-inner mt-2">
-                  <p className="text-gray-100 text-[13px] leading-relaxed font-medium">
+                <div className="bg-[#020617]/65 rounded-lg p-3 border border-white/10 shadow-inner mt-2">
+                  <p className="text-slate-100 text-[13px] leading-relaxed font-medium">
                     "Arriving in 15 mins for your smart home setup."
                   </p>
                 </div>

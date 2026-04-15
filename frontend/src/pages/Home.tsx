@@ -7,7 +7,7 @@ import WhyChooseUs from '../components/WhyChooseUs';
 
 export default function Home() {
   return (
-    <div className="antialiased text-gray-900 min-h-screen bg-gray-50 flex flex-col selection:bg-blue-500 selection:text-white overflow-x-hidden">
+    <div className="antialiased text-slate-100 min-h-screen bg-[#07111f] flex flex-col selection:bg-sky-500 selection:text-white overflow-x-hidden">
       <Navbar />
       <main className="flex-1">
         <Hero />
