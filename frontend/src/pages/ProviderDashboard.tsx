@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Navbar from '../components/Navbar';
 import Sidebar from '../components/provider/Sidebar';
 import DashboardCards from '../components/provider/DashboardCards';
 import ChartSection from '../components/provider/ChartSection';
@@ -11,7 +12,11 @@ export default function ProviderDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
-    <div className="flex min-h-screen bg-slate-900 overflow-hidden font-sans">
+    <div className="min-h-screen bg-slate-900 overflow-hidden font-sans">
+      {/* Homepage Navbar */}
+      <Navbar />
+
+      <div className="flex pt-[70px]">
       {/* Dynamic Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-950 via-slate-900 to-indigo-950"></div>
@@ -95,6 +100,7 @@ export default function ProviderDashboard() {
           )}
         </AnimatePresence>
       </main>
+      </div>
     </div>
   );
 }

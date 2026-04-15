@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import ProviderDashboard from './pages/ProviderDashboard';
+import UserDashboard from './pages/UserDashboard';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/provider-dashboard" element={<ProviderDashboard />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
         </Routes>
       </div>
     </BrowserRouter>

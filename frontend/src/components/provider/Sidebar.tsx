@@ -30,7 +30,7 @@ export default function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }: 
     <>
       {/* Mobile Hamburger Overlay */}
       <button 
-        className="lg:hidden fixed top-4 right-4 z-50 p-2 bg-indigo-600 rounded-lg text-white shadow-lg"
+        className="lg:hidden fixed top-[78px] left-4 z-50 p-2 bg-indigo-600 rounded-lg text-white shadow-lg"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Menu className="w-6 h-6" />
@@ -40,25 +40,12 @@ export default function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }: 
         initial={false}
         animate={{ width: isOpen ? 256 : 80 }}
         className={cn(
-          "fixed top-0 left-0 h-full z-40 bg-white/5 backdrop-blur-2xl border-r border-white/10 flex flex-col transition-all duration-300 shadow-2xl",
-          !isOpen && "lg:block hidden", // fully hide on mobile if collapsed, optionally
+          "fixed top-[70px] left-0 h-[calc(100vh-70px)] z-40 bg-white/5 backdrop-blur-2xl border-r border-white/10 flex flex-col transition-all duration-300 shadow-2xl",
+          !isOpen && "lg:block hidden",
           "translate-x-0"
         )}
       >
-        {/* Sidebar Header */}
-        <div className="h-20 flex items-center justify-between px-4 border-b border-white/10">
-          <div className={cn("flex items-center gap-3 overflow-hidden", !isOpen && "justify-center w-full")}>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center flex-shrink-0 text-white font-bold shadow-lg shadow-blue-500/30">
-              P
-            </div>
-            {isOpen && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="whitespace-nowrap">
-                <h3 className="text-white font-semibold leading-tight">Provider Pro</h3>
-                <span className="text-xs text-blue-300">Verified Partner</span>
-              </motion.div>
-            )}
-          </div>
-        </div>
+
 
         {/* Navigation Links */}
         <div className="flex-1 py-6 flex flex-col gap-2 px-3 overflow-y-auto custom-scrollbar">

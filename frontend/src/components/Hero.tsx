@@ -77,6 +77,7 @@ export default function Hero() {
           {/* Actions Container */}
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mt-2">
             <motion.button 
+              onClick={() => navigate('/dashboard')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="group relative flex justify-center items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] rounded-xl font-bold text-white text-lg shadow-[0_8px_20px_rgba(37,99,235,0.4)] transition-all duration-300 overflow-hidden"

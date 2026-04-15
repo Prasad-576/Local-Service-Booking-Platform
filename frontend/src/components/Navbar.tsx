@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, Bell } from "lucide-react";
 import { cn } from "../utils/cn";
@@ -7,10 +7,18 @@ import ProfileDropdown from "./ProfileDropdown";
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState("Home");
   const [isLoggedIn] = useState(false); // Logged out state
+  const [isScrolled, setIsScrolled] = useState(false);
   const user = {
     name: "John Doe",
     email: "john@gmail.com",
   };
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // check initial position
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const menuItems = ["Home", "Services", "Pricing", "Contact"];
 
@@ -19,7 +27,12 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 h-[70px] flex items-center bg-gradient-to-r from-[#0f172a] via-[#1e3a8a] to-[#2563eb] shadow-[0_4px_20px_rgba(30,58,138,0.3)] border-b border-blue-400/20"
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 h-[70px] flex items-center transition-all duration-300 ease-in-out border-b",
+        isScrolled
+          ? "bg-transparent shadow-sm border-white/10"
+          : "bg-gradient-to-r from-[#0f172a] via-[#1e3a8a] to-[#2563eb] shadow-[0_4px_20px_rgba(30,58,138,0.3)] border-blue-400/20"
+      )}
     >
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
         
