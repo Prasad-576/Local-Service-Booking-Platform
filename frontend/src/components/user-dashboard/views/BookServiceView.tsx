@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Zap,
@@ -19,7 +19,21 @@ import {
 import { cn } from '../../../utils/cn';
 import ProviderCard from '../components/ProviderCard';
 import BookingFlowModal from '../components/BookingFlowModal';
-import type { Provider } from '../components/ProviderCard';
+
+export interface Provider {
+  id: string | number;
+  providerId?: string;
+  name: string;
+  service: string;
+  title?: string;
+  rating: number;
+  reviews: number;
+  experience: string;
+  distance: string;
+  available: boolean;
+  visitingCharge: number;
+  image: string;
+}
 
 const categories = [
   { name: 'Electrician', icon: Zap, color: 'from-amber-400 to-orange-500' },
@@ -30,80 +44,6 @@ const categories = [
   { name: 'Carpentry', icon: Hammer, color: 'from-orange-400 to-red-500' },
 ];
 
-const mockProviders: Provider[] = [
-  {
-    id: 1,
-    name: 'Rajesh Kumar',
-    service: 'Electrician',
-    rating: 4.8,
-    reviews: 127,
-    experience: '5 yrs',
-    distance: '2.1 km',
-    available: true,
-    visitingCharge: 149,
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150',
-  },
-  {
-    id: 2,
-    name: 'Amit Sharma',
-    service: 'Electrician',
-    rating: 4.6,
-    reviews: 89,
-    experience: '3 yrs',
-    distance: '3.5 km',
-    available: true,
-    visitingCharge: 129,
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fit=crop&w=150&h=150',
-  },
-  {
-    id: 3,
-    name: 'Priya Patel',
-    service: 'Cleaning',
-    rating: 4.9,
-    reviews: 215,
-    experience: '7 yrs',
-    distance: '1.3 km',
-    available: true,
-    visitingCharge: 199,
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?fit=crop&w=150&h=150',
-  },
-  {
-    id: 4,
-    name: 'Suresh Reddy',
-    service: 'Plumbing',
-    rating: 4.5,
-    reviews: 64,
-    experience: '4 yrs',
-    distance: '4.2 km',
-    available: false,
-    visitingCharge: 119,
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?fit=crop&w=150&h=150',
-  },
-  {
-    id: 5,
-    name: 'Meena Iyer',
-    service: 'Painting',
-    rating: 4.7,
-    reviews: 156,
-    experience: '6 yrs',
-    distance: '2.8 km',
-    available: true,
-    visitingCharge: 179,
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fit=crop&w=150&h=150',
-  },
-  {
-    id: 6,
-    name: 'Vikram Singh',
-    service: 'AC Repair',
-    rating: 4.4,
-    reviews: 43,
-    experience: '2 yrs',
-    distance: '5.0 km',
-    available: true,
-    visitingCharge: 199,
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fit=crop&w=150&h=150',
-  },
-];
 
 export default function BookServiceView() {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -114,9 +54,33 @@ export default function BookServiceView() {
   const [availableNow, setAvailableNow] = useState(false);
   const [bookingProvider, setBookingProvider] = useState<Provider | null>(null);
   const [quickBookSuccess, setQuickBookSuccess] = useState(false);
+  const [providers, setProviders] = useState<Provider[]>([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/services')
+      .then(res => res.json())
+      .then(data => {
+        const mapped = data.map((d: any) => ({
+          id: d._id,
+          providerId: d.providerId?._id,
+          name: d.providerId?.name || 'Local Provider',
+          service: d.category,
+          title: d.title,
+          rating: 4.8,
+          reviews: Math.floor(Math.random() * 100) + 10,
+          experience: '5 yrs',
+          distance: '2.1 km',
+          available: true,
+          visitingCharge: d.price,
+          image: d.images?.[0] ? `http://localhost:5000${d.images[0]}` : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150'
+        }));
+        setProviders(mapped);
+      })
+      .catch(console.error);
+  }, []);
 
   // Filter providers
-  const filteredProviders = mockProviders.filter((p) => {
+  const filteredProviders = providers.filter((p) => {
     if (selectedCategory && p.service !== selectedCategory) return false;
     if (ratingFilter && p.rating < 4) return false;
     if (p.visitingCharge > priceRange) return false;

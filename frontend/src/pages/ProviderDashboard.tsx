@@ -6,6 +6,7 @@ import DashboardCards from '../components/provider/DashboardCards';
 import ChartSection from '../components/provider/ChartSection';
 import BookingTable from '../components/provider/BookingTable';
 import MultiStepForm from '../components/provider/MultiStepForm';
+import ManageServices from '../components/provider/ManageServices';
 
 export default function ProviderDashboard() {
   const [activeTab, setActiveTab] = useState('Dashboard');
@@ -84,8 +85,21 @@ export default function ProviderDashboard() {
             </motion.div>
           )}
 
+          {activeTab === 'Manage Services' && (
+            <motion.div
+              key="manage-services"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+              className="w-full"
+            >
+              <ManageServices />
+            </motion.div>
+          )}
+
           {/* Placeholders for other tabs */}
-          {['Manage Services', 'Bookings', 'Earnings', 'Notifications', 'Booking History', 'Profile Settings'].includes(activeTab) && (
+          {['Bookings', 'Earnings', 'Notifications', 'Booking History', 'Profile Settings'].includes(activeTab) && (
             <motion.div
               key="placeholder"
               initial={{ opacity: 0 }}

@@ -2,7 +2,7 @@ import type { FormData } from './MultiStepForm';
 import { ArrowRight } from 'lucide-react';
 
 export default function Step1({ data, update, next }: { data: FormData, update: (u: Partial<FormData>) => void, next: () => void }) {
-  const serviceTypes = ['Electrician', 'Plumber', 'Cleaning', 'IT Support', 'Carpenter'];
+  const serviceTypes = ['Electrician', 'Plumber', 'Cleaning', 'IT Support', 'Carpenter', 'Custom'];
 
   return (
     <div className="space-y-6">
@@ -23,6 +23,19 @@ export default function Step1({ data, update, next }: { data: FormData, update: 
             {serviceTypes.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
         </div>
+
+        {data.serviceType === 'Custom' && (
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-1">Custom Service Name</label>
+            <input 
+              type="text" 
+              value={data.customService}
+              onChange={(e) => update({ customService: e.target.value })}
+              placeholder="e.g. Pet Grooming"
+              className="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all placeholder:text-slate-500"
+            />
+          </div>
+        )}
 
         <div>
           <label className="block text-sm font-medium text-slate-300 mb-1">Service Name</label>
@@ -50,7 +63,7 @@ export default function Step1({ data, update, next }: { data: FormData, update: 
       <div className="flex justify-end pt-4">
         <button 
           onClick={next}
-          disabled={!data.name || !data.serviceType}
+          disabled={!data.name || !data.serviceType || !data.description || (data.serviceType === 'Custom' && !data.customService)}
           className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-xl transition-all"
         >
           Next Step <ArrowRight className="w-4 h-4" />

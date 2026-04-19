@@ -1,0 +1,70 @@
+# ==============================================================================
+# Node.js & Dependencies
+# ==============================================================================
+# Ignored because dependencies can be downloaded from package.json via `npm install`.
+# Committing node_modules makes the repository huge and slow.
+node_modules/
+
+# ==============================================================================
+# Environment Variables & Secrets
+# ==============================================================================
+# Ignored to prevent leaking sensitive API keys, database URLs, and credentials.
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+
+# ==============================================================================
+# Build Output & Temporary Files
+# ==============================================================================
+# Ignored because these are auto-generated from source code during build processes.
+dist/
+dist-ssr/
+build/
+.next/
+out/
+
+# ==============================================================================
+# Project-Specific (Backend)
+# ==============================================================================
+# Ignored because these are user-generated testing files and not part of the source code.
+Backend/uploads/
+
+# ==============================================================================
+# Log Files
+# ==============================================================================
+# Ignored because they change constantly and clutter git history (e.g. build.log, tsc-errors.log).
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==============================================================================
+# OS System Files
+# ==============================================================================
+# Ignored because these are auto-generated OS files that have nothing to do with the project.
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# ==============================================================================
+# IDE / Editor Files
+# ==============================================================================
+# Ignored because these contain local/personal editor configurations.
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

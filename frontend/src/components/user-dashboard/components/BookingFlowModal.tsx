@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { cn } from '../../../utils/cn';
 import type { Provider } from './ProviderCard';
+import { useAuth } from '../../../context/AuthContext';
 
 interface BookingFlowModalProps {
   provider: Provider;
@@ -47,14 +48,45 @@ export default function BookingFlowModal({
   const [description, setDescription] = useState('');
   const [urgency, setUrgency] = useState<'normal' | 'urgent'>('normal');
   const [address, setAddress] = useState(location || 'Mumbai, Maharashtra');
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
 
   const visitingCharge = provider.visitingCharge;
   const serviceCharge = 299;
   const urgencyCharge = urgency === 'urgent' ? 100 : 0;
   const totalAmount = visitingCharge + serviceCharge + urgencyCharge;
 
-  const handleConfirm = () => {
-    setStep(3);
+  const handleConfirm = async () => {
+    try {
+      setLoading(true);
+      const data = new FormData();
+      data.append('userId', user._id);
+      data.append('providerId', provider.providerId || '');
+      data.append('serviceId', provider.id.toString());
+      data.append('description', description);
+      data.append('address', address);
+      data.append('timeSlot', selectedSlot);
+      
+      if (imageFile) {
+        data.append('image', imageFile);
+      }
+
+      const res = await fetch('http://localhost:5000/api/bookings', {
+        method: 'POST',
+        body: data
+      });
+
+      if (res.ok) {
+        setStep(3);
+      } else {
+        console.error('Booking failed');
+      }
+    } catch (err) {
+      console.error('Failed to create booking', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -198,10 +230,17 @@ export default function BookingFlowModal({
                     <ImageIcon className="w-4 h-4 text-purple-500" />
                     Upload Image (Optional)
                   </label>
-                  <div className="border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:border-blue-300 hover:bg-blue-50/30 transition-all cursor-pointer">
-                    <Upload className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-                    <p className="text-xs text-gray-400 font-medium">Click to upload or drag & drop</p>
-                  </div>
+                  <label className="block border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:border-blue-300 hover:bg-blue-50/30 transition-all cursor-pointer relative overflow-hidden">
+                    <input type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files?.[0] || null)} className="hidden" />
+                    {imageFile ? (
+                      <div className="text-sm font-semibold text-blue-600">{imageFile.name}</div>
+                    ) : (
+                      <>
+                        <Upload className="w-8 h-8 text-gray-300 mx-auto mb-2" />
+                        <p className="text-xs text-gray-400 font-medium">Click to upload or drag & drop</p>
+                      </>
+                    )}
+                  </label>
                 </div>
 
                 {/* Urgency */}
@@ -325,9 +364,10 @@ export default function BookingFlowModal({
                   <motion.button
                     whileTap={{ scale: 0.97 }}
                     onClick={handleConfirm}
-                    className="flex-[2] py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] text-white shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all"
+                    disabled={loading}
+                    className="flex-[2] py-3.5 rounded-xl text-sm font-bold bg-gradient-to-r from-[#2563eb] to-[#3b82f6] hover:from-[#1d4ed8] hover:to-[#2563eb] text-white shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all disabled:opacity-50"
                   >
-                    Confirm Booking
+                    {loading ? 'Confirming...' : 'Confirm Booking'}
                   </motion.button>
                 </div>
               </motion.div>

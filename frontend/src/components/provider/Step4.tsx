@@ -2,9 +2,10 @@ import type { FormData } from './MultiStepForm';
 import { ArrowRight, ArrowLeft, UploadCloud, Image as ImageIcon } from 'lucide-react';
 
 export default function Step4({ data, update, next, prev }: { data: FormData, update: (u: Partial<FormData>) => void, next: () => void, prev: () => void }) {
-  // In a real app we'd handle file uploading. Here we just set a mock image.
-  const handleSimulatedUpload = () => {
-    update({ media: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=600&auto=format&fit=crop' });
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      update({ media: e.target.files[0] });
+    }
   };
 
   return (
@@ -18,19 +19,19 @@ export default function Step4({ data, update, next, prev }: { data: FormData, up
         <label className="block text-sm font-medium text-slate-300 mb-2">Cover Image</label>
         
         {!data.media ? (
-          <div 
-            onClick={handleSimulatedUpload}
-            className="w-full h-48 border-2 border-dashed border-blue-500/30 hover:border-blue-500 bg-blue-500/5 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all hover:bg-blue-500/10 group"
+          <label 
+            className="w-full h-48 border-2 border-dashed border-blue-500/30 hover:border-blue-500 bg-blue-500/5 rounded-2xl flex flex-col items-center justify-center cursor-pointer transition-all hover:bg-blue-500/10 group relative"
           >
+            <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
             <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
               <UploadCloud className="w-8 h-8 text-blue-400" />
             </div>
-            <p className="text-white font-medium">Click to upload or drag & drop</p>
-            <p className="text-slate-400 text-sm mt-1">SVG, PNG, JPG or GIF (max. 5MB)</p>
-          </div>
+            <p className="text-white font-medium">Click to upload image</p>
+            <p className="text-slate-400 text-sm mt-1">PNG, JPG or GIF (max. 5MB)</p>
+          </label>
         ) : (
           <div className="relative w-full h-48 rounded-2xl overflow-hidden group border border-white/10 shadow-lg">
-            <img src={data.media} alt="Cover Preview" className="w-full h-full object-cover" />
+            <img src={data.media instanceof File ? URL.createObjectURL(data.media) : (typeof data.media === 'string' ? data.media : '')} alt="Cover Preview" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
               <button onClick={() => update({ media: null })} className="bg-red-500/80 hover:bg-red-500 text-white px-4 py-2 rounded-lg font-medium transition-all">
                 Remove Image
